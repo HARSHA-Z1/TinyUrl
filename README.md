@@ -1,3 +1,4 @@
+
 # TinyUrl
 
 TinyUrl is a URL shortening service built with Java and Spring Boot. It allows users to create short URLs, track click analytics, and redirect to original URLs.  
