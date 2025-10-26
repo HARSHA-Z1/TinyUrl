@@ -17,6 +17,20 @@ The application supports JWT-based authentication and uses a Bloom filter to opt
 
 ---
 
+## Tech Stack
+
+- **Java**: JDK 17 (core programming language)
+- **Spring Boot**: Framework for building the REST API and application structure
+- **Spring Data JPA**: For database operations with Hibernate
+- **Spring Security**: For JWT-based authentication and role-based access control
+- **PostgreSQL**: Relational database for storing users, URL mappings, and click events
+- **Guava**: For Bloom filter implementation to optimize username checks
+- **Lombok**: For reducing boilerplate code (e.g., getters, setters)
+- **JJWT**: For generating and validating JSON Web Tokens
+- **Maven**: Build and dependency management
+
+---
+
 ## Prerequisites
 
 - Java: JDK 17 or later
@@ -45,13 +59,13 @@ CREATE DATABASE tinyurl;
 
 
 Configure src/main/resources/application.properties:
-
+```
 spring.datasource.url=jdbc:postgresql://localhost:5432/tinyurl
 spring.datasource.username=postgres
 spring.datasource.password=your_password
 spring.jpa.hibernate.ddl-auto=update
 spring.jpa.database-platform=org.hibernate.dialect.PostgreSQLDialect
-
+```
 Replace your_password with your actual PostgreSQL password.
 
 4. Run the Application
@@ -65,19 +79,19 @@ The application will start at http://localhost:8080.
 API Endpoints Overview
 
 Authentication
-
+```
 Method	Endpoint	Description
 POST	/api/auth/public/register	Register a new user
 POST	/api/auth/public/login	Login and obtain JWT token
-
+```
 URL Management
-
+```
 Method	Endpoint	Description
 POST	/api/url/shorten	Create a short URL
 GET	/api/url/myurls	View user’s URLs
 GET	/api/url/events/{shortUrl}	View analytics for a short URL
 GET	/{shortUrl}	Redirect to the original URL
-
+```
 
 ⸻
 
@@ -90,12 +104,12 @@ You can test all endpoints using Postman.
 Method: POST
 URL: http://localhost:8080/api/auth/public/register
 Body (JSON):
-
+```
 {
   "username": "testuser",
   "password": "testpass"
 }
-
+```
 Response:
 
 User registered successfully
@@ -108,18 +122,18 @@ User registered successfully
 Method: POST
 URL: http://localhost:8080/api/auth/public/login
 Body (JSON):
-
+```
 {
   "username": "testuser",
   "password": "testpass"
 }
-
+```
 Response:
-
+```
 {
   "jwt": "eyJhbGciOiJIUzI1NiJ9..."
 }
-
+```
 Copy the token and use it in all protected routes.
 
 ⸻
@@ -140,12 +154,12 @@ Body (JSON):
 }
 
 Response:
-
+```
 {
   "shortUrl": "abc123"
 }
 
-
+```
 ⸻
 
 4. Redirect to Original URL
@@ -166,7 +180,7 @@ Headers:
 Authorization: Bearer <your_jwt_token>
 
 Response Example:
-
+```
 [
   {
     "shortUrl": "abc123",
@@ -175,7 +189,7 @@ Response Example:
   }
 ]
 
-
+```
 ⸻
 
 6. View Analytics for a Short URL
@@ -187,13 +201,13 @@ Headers:
 Authorization: Bearer <your_jwt_token>
 
 Response Example:
-
+```
 [
   {
     "timestamp": "2025-10-27T12:00:00"
   }
 ]
-
+```
 
 ⸻
 
@@ -205,7 +219,7 @@ Notes
 ⸻
 
 Project Structure
-
+```
 src/main/java/com/shorturl/short_url/
 │
 ├── controller/
@@ -245,7 +259,7 @@ src/main/java/com/shorturl/short_url/
 │
 └── ShortUrlApplication.java
 
-
+```
 ⸻
 
 Database Setup
@@ -271,12 +285,12 @@ spring.jpa.hibernate.ddl-auto=update
 spring.jpa.database-platform=org.hibernate.dialect.PostgreSQLDialect
 
 
-
 ⸻
 
 Dependencies
 
 Key dependencies (from pom.xml):
+```
 	•	Spring Boot Starter Web
 	•	Spring Boot Starter Data JPA
 	•	Spring Boot Starter Security
@@ -284,4 +298,4 @@ Key dependencies (from pom.xml):
 	•	Guava (for Bloom Filter)
 	•	Lombok
 	•	JJWT (for JWT Authentication)
-
+```
