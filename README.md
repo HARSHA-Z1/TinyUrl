@@ -1,9 +1,3 @@
-Perfect — here’s your complete clean README (no emojis, no fluff, production-ready).
-It includes everything: project overview, setup, API usage, PostgreSQL config, and full Postman section.
-
-⸻
-
-
 # TinyUrl
 
 TinyUrl is a URL shortening service built with Java and Spring Boot. It allows users to create short URLs, track click analytics, and redirect to original URLs.  
