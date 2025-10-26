@@ -64,7 +64,7 @@ public class UrlService {
     public List<UserUrlDto> gerUserUrls(Principal principal) {
         User user = userRepository.findByUsername(principal.getName())
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
-        List<UrlMapping> urlMappings = urlMappingRepository.findbyUser(user);
+        List<UrlMapping> urlMappings = urlMappingRepository.findByUser(user);
         return urlMappings.stream()
                 .map(this::transformTOUserUrlDto)
                 .toList();
